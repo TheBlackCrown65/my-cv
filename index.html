@@ -307,10 +307,9 @@
 
     .timeline-dot {
       position: absolute;
-      left: -2rem; /* Mobile: center of dot at -1rem relative to card */
+      left: -0.5rem;
       width: 2.5rem;
       height: 2.5rem;
-      margin-top: 0.25rem;
       border-radius: 50%;
       border: 3px solid #fff;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
@@ -320,17 +319,15 @@
       justify-content: center;
       overflow: hidden;
       background-color: white;
-      transform: translateX(-50%);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     @media (min-width: 768px) {
       .timeline-dot {
-        left: -3.5rem; /* Desktop: center of dot at -1.75rem */
+        left: -0.6rem;
         width: 3.5rem;
         height: 3.5rem;
         border: 4px solid #fff;
-        margin-top: 0;
       }
     }
 
