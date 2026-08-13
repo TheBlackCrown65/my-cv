@@ -2008,15 +2008,15 @@
 
   <!-- Certificate Modal -->
   <div id="certModal" onclick="closeCertModal()"
-    class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/90 backdrop-blur-sm opacity-0 transition-opacity duration-300 p-4">
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/90 backdrop-blur-sm opacity-0 transition-opacity duration-300">
     
     <!-- Fixed Close Button (Top Right of Screen) -->
     <button onclick="closeCertModal()"
       class="fixed top-4 right-4 md:top-6 md:right-8 text-white/70 hover:text-white transition text-5xl z-50">&times;</button>
       
-    <div class="relative w-full max-w-5xl flex items-center justify-center">
+    <div class="w-full h-full p-8 md:p-16 flex items-center justify-center">
       <img id="certImage" src="" alt="Certificate"
-        class="max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-xl shadow-2xl bg-white cursor-pointer">
+        class="max-w-full max-h-full object-contain rounded-xl shadow-2xl bg-white cursor-pointer">
     </div>
   </div>
 
