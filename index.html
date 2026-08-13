@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ronnakorn P. | Senior Automate Tester</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Prompt:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0EA5E9;
+      --secondary: #6366F1;
+      --dark: #0F172A;
+      --light: #F8FAFC;
+    }
+
+    html {
+      scroll-padding-top: 6rem;
+    }
+
+    body {
+      font-family: 'Inter', 'Prompt', sans-serif;
+      background-color: #F8FAFC;
+      color: #1E293B;
+      scroll-behavior: smooth;
+    }
+
+    /* Brilliant Blues Palette Implementation */
+    .bg-vibrant {
+      background: linear-gradient(135deg, #0EA5E9 0%, #6366F1 100%);
+    }
+
+    .text-vibrant {
+      background: linear-gradient(135deg, #0EA5E9 0%, #6366F1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      padding-right: 2px;
+      margin-right: -2px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .bg-animate {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      background: #f8fafc;
+    }
+
+    .blob {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+      filter: blur(80px);
+      border-radius: 50%;
+      animation: move 20s infinite alternate;
+    }
+
+    .blob-1 {
+      top: -10%;
+      left: -10%;
+      animation-duration: 25s;
+    }
+
+    .blob-2 {
+      bottom: -10%;
+      right: -10%;
+      animation-duration: 30s;
+      background: rgba(99, 102, 241, 0.08);
+    }
+
+    .blob-3 {
+      top: 40%;
+      left: 30%;
+      animation-duration: 22s;
+      width: 300px;
+      height: 300px;
+    }
+
+    @keyframes move {
+      from {
+        transform: translate(0, 0) scale(1);
+      }
+
+      to {
+        transform: translate(100px, 50px) scale(1.2);
+      }
+    }
+
+    @keyframes float-blob {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(150px, -200px) scale(1.4);
+      }
+
+      66% {
+        transform: translate(-200px, 150px) scale(0.6);
+      }
+
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+    }
+
+    @keyframes float-center {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      33% {
+        transform: translate(calc(-50% + 200px), calc(-50% - 150px)) scale(1.4);
+      }
+
+      66% {
+        transform: translate(calc(-50% - 150px), calc(-50% + 200px)) scale(0.6);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    .profile-wrapper {
+      position: relative;
+      width: 440px;
+      height: 520px;
+      max-width: 100%;
+    }
+
+    .profile-backdrop {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 85%;
+      height: 75%;
+      background: linear-gradient(135deg, #0EA5E9 0%, #6366F1 50%, #8B5CF6 100%);
+      border-radius: 2rem;
+      box-shadow:
+        0 25px 60px -12px rgba(99, 102, 241, 0.35),
+        0 0 80px rgba(14, 165, 233, 0.15);
+    }
+
+    .profile-backdrop::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+    }
+
+    .profile-glow {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 70%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+      filter: blur(30px);
+      animation: glowPulse 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        opacity: 0.5;
+        transform: translateX(-50%) scale(0.95);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.05);
+      }
+    }
+
+    .profile-cutout {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+      filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.15));
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .profile-wrapper:hover .profile-cutout {
+      transform: scale(1.03) translateY(-4px);
+    }
+
+    .profile-orbit {
+      position: absolute;
+      bottom: 12%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      animation: orbitSpin 20s linear infinite;
+      z-index: 5;
+    }
+
+    .orbit-dot {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+    }
+
+    .orbit-dot-1 {
+      width: 10px;
+      height: 10px;
+      top: 5%;
+      left: 15%;
+    }
+
+    .orbit-dot-2 {
+      width: 6px;
+      height: 6px;
+      bottom: 10%;
+      right: 10%;
+    }
+
+    .orbit-dot-3 {
+      width: 8px;
+      height: 8px;
+      top: 20%;
+      right: 15%;
+    }
+
+    .orbit-dot-4 {
+      width: 5px;
+      height: 5px;
+      bottom: 25%;
+      left: 10%;
+    }
+
+    @keyframes orbitSpin {
+      from {
+        transform: translateX(-50%) rotate(0deg);
+      }
+
+      to {
+        transform: translateX(-50%) rotate(360deg);
+      }
+    }
+
+    .timeline-container {
+      position: relative;
+      padding-left: 3rem;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 0.95rem;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #E2E8F0;
+    }
+
+    .timeline-fill {
+      position: absolute;
+      left: 0.95rem;
+      top: 0;
+      width: 3px;
+      height: 0;
+      background: linear-gradient(180deg, #0EA5E9 0%, #6366F1 50%, #8B5CF6 100%);
+      transition: height 0.1s ease-out;
+      z-index: 1;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -0.6rem;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timeline-dot:hover {
+      transform: scale(1.3);
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.4);
+    }
+
+    .timeline-dot .dot-favicon {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+      padding: 4px;
+    }
+
+    /* Scroll Reveal Animation */
+    .reveal-card {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hover Expand + Glow */
+    .journey-card {
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .journey-card:hover {
+      transform: scale(1.015) translateY(-4px);
+      box-shadow:
+        0 20px 50px -15px rgba(14, 165, 233, 0.15),
+        0 0 0 1px rgba(14, 165, 233, 0.1),
+        0 0 30px rgba(99, 102, 241, 0.08);
+      border-color: rgba(14, 165, 233, 0.3);
+    }
+
+    /* Animated Duration Counter */
+    .duration-counter {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tool-card {
+      background: white;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      border: 1px solid #f1f5f9;
+      transition: all 0.2s ease;
+    }
+
+    .tool-card:hover {
+      transform: translateX(4px);
+      border-color: #0EA5E9;
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.1);
+    }
+
+    .tool-icon {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .tool-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    /* Vinyl Record Player Styling */
+    .vinyl-container {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      margin: auto;
+    }
+
+    .vinyl-disc {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle, #334155 0%, #0F172A 100%);
+      border: 8px solid #1e293b;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vinyl-disc::before {
+      content: '';
+      position: absolute;
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .vinyl-label {
+      width: 35%;
+      height: 35%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0EA5E9, #6366F1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .vinyl-center {
+      width: 15%;
+      height: 15%;
+      border-radius: 50%;
+      background: #F8FAFC;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .tonearm {
+      position: absolute;
+      top: 20px;
+      right: -20px;
+      width: 100px;
+      height: 10px;
+      background: #94a3b8;
+      border-radius: 5px;
+      transform-origin: left center;
+      transform: rotate(30deg);
+      z-index: 10;
+      transition: transform 0.5s ease;
+    }
+
+    .playing .vinyl-disc {
+      animation: spin 3s linear infinite;
+    }
+
+    .playing .tonearm {
+      transform: rotate(60deg);
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) scale(0.5) rotate(-15deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translateY(-120vh) scale(1.2) rotate(15deg);
+        opacity: 0;
+      }
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -50px;
+      animation: floatHeart linear forwards;
+      z-index: 1;
+      /* Above background but behind content */
+      pointer-events: none;
+      user-select: none;
+      font-size: 2rem;
+      filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.5));
+    }
+
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* Fix the blank space issue by NOT avoiding page breaks on sections */
+      .bg-white,
+      .tool-category,
+      .timeline-item,
+      .tool-card {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Keep headings and their subtitles together, and attached to the content below */
+      .text-center.mb-16,
+      h2,
+      h3 {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+
+      /* Force scroll-revealed elements and timeline to be fully visible */
+      .reveal-card {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      #timelineFill {
+        height: 100% !important;
+      }
+
+      nav,
+      .modal,
+      #playBtn,
+      .bg-animate,
+      #heartContainer,
+      .profile-glow,
+      .profile-orbit {
+        display: none !important;
+      }
+
+      .shadow-sm,
+      .shadow-md,
+      .shadow-xl,
+      .shadow-2xl {
+        box-shadow: none !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+
+      body {
+        background-color: white !important;
+      }
+
+      .print-hidden-section {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body id="top" class="antialiased relative">
+
+  <!-- Print / Download PDF Button -->
+  <button onclick="window.print()"
+    class="fixed bottom-8 right-8 z-[100] bg-slate-900 text-white w-14 h-14 rounded-full shadow-2xl hover:scale-110 hover:bg-sky-600 transition-all group flex items-center justify-center hidden md:flex print:hidden">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z">
+      </path>
+    </svg>
+    <span
+      class="absolute right-full mr-4 bg-slate-800 text-white px-3 py-1.5 rounded-lg text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg">Print
+      / Download PDF</span>
+  </button>
+
+  <!-- Container for floating hearts animation -->
+  <div id="heartContainer" class="fixed inset-0 pointer-events-none overflow-hidden z-[1]"></div>
+
+  <div class="bg-animate">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-vibrant rounded-xl flex items-center justify-center text-white font-bold shadow-lg">R
+        </div>
+        <span class="font-extrabold text-slate-900 tracking-tight">RONNAKORN.P</span>
+      </div>
+      <div class="hidden md:flex gap-8 text-[10px] font-black text-slate-400 tracking-widest uppercase">
+        <a href="#top" class="hover:text-sky-600 transition">Summary</a>
+        <a href="#journey" class="hover:text-sky-600 transition">Journey</a>
+        <a href="#education" class="hover:text-sky-600 transition">Education</a>
+        <a href="#certifications" class="hover:text-sky-600 transition">Certificates</a>
+        <a href="#tools" class="hover:text-sky-600 transition">Tech Stack</a>
+        <a href="#soft-skills" class="hover:text-sky-600 transition">Soft Skills</a>
+        <a href="#hobbies" class="hover:text-sky-600 transition">Hobbies</a>
+      </div>
+      <!-- <a href="mailto:ronnakorn.krit3665@gmail.com"
+        class="bg-slate-900 text-white px-6 py-2 rounded-xl text-xs font-bold hover:bg-sky-600 transition">CONTACT</a> -->
+    </div>
+  </nav>
+
+  <header id="summary" class="pt-32 pb-20 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-5 flex justify-center lg:justify-center">
+        <div class="profile-wrapper">
+          <div class="profile-backdrop"></div>
+          <div class="profile-glow"></div>
+          <div class="profile-orbit">
+            <div class="orbit-dot orbit-dot-1"></div>
+            <div class="orbit-dot orbit-dot-2"></div>
+            <div class="orbit-dot orbit-dot-3"></div>
+            <div class="orbit-dot orbit-dot-4"></div>
+          </div>
+          <img src="assets/profile_cut.png" alt="Ronnakorn P. Profile Photo" class="profile-cutout" />
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-orange-600 mb-3">Ronnakorn Phutthakhoonmongkol</h2>
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <span
+            class="inline-block px-3 py-1 bg-sky-100 text-sky-600 rounded-full text-[10px] font-black tracking-widest uppercase">Senior
+            Automate Tester</span>
+          <span
+            class="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-[10px] font-black tracking-widest uppercase shadow-sm border border-indigo-200">
+            Total QA Experience: <span id="qa-exp-val" class="ml-1 text-indigo-900 text-[11px]">...</span>
+          </span>
+        </div>
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-tight mb-6">
+          Mastering <span class="text-vibrant">Software Quality</span><br>through Automation.
+        </h1>
+        <p class="text-lg text-slate-500 max-w-2xl leading-relaxed font-medium mb-8">
+          Senior Automate Tester specializing in designing automated testing systems for banking and enterprise
+          organizations.
+          Focused on enhancing test efficiency with Robot Framework and Cloud Technologies.
+        </p>
+        <div class="flex flex-wrap gap-4 text-sm font-bold text-slate-600">
+          <span class="flex items-center gap-2">📍 Nonthaburi, Thailand</span>
+          <span class="hidden lg:inline text-slate-300">|</span>
+          <span class="flex items-center gap-2">✉️ ronnakorn.krit3665@gmail.com</span>
+          <span class="hidden lg:inline text-slate-300">|</span>
+          <span class="flex items-center gap-2">📞 082-651-5594</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6">
+
+    <!-- Education Section -->
+    <section id="education" class="mb-24">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-extrabold text-slate-900">Education</h2>
+        <p class="text-slate-500 mt-2">Academic background and continuous learning</p>
+      </div>
+
+      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Second Bachelor's -->
+        <div
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition relative overflow-hidden group">
+          <img src="https://www.google.com/s2/favicons?domain=pim.ac.th&sz=128" alt="PIM Logo"
+            class="absolute -bottom-5 -right-5 w-40 h-40 object-contain mix-blend-multiply opacity-20 group-hover:opacity-30 transition-all duration-500 pointer-events-none z-0">
+          <div
+            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sky-400 to-sky-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left z-10">
+          </div>
+          <div class="mb-4 relative z-10">
+            <span
+              class="inline-block px-3 py-1 bg-sky-100 text-sky-600 rounded-full text-[10px] font-black tracking-widest uppercase">Present</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2 leading-tight relative z-10">Bachelor of Science<br>(Program
+            in
+            Cybersecurity)</h3>
+          <p class="text-sky-600 font-semibold text-sm mb-0 relative z-10">Panyapiwat Institute of Management</p>
+        </div>
+
+        <!-- First Bachelor's -->
+        <div
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition relative overflow-hidden group">
+          <img src="assets/logo_ku_color.png" alt="KU Logo"
+            class="absolute -bottom-6 -right-6 w-40 h-40 object-contain mix-blend-multiply opacity-20 group-hover:opacity-30 transition-all duration-500 pointer-events-none z-0">
+          <div
+            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-green-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left z-10">
+          </div>
+          <div class="mb-4 relative z-10">
+            <span
+              class="inline-block px-3 py-1 bg-slate-100 text-slate-500 rounded-full text-[10px] font-black tracking-widest uppercase">2012
+              - 2016</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2 leading-tight relative z-10">Bachelor of Science<br>(Computer
+            Science)</h3>
+          <p class="text-green-600 font-semibold text-sm mb-0 relative z-10">Kasetsart University</p>
+        </div>
+
+        <!-- High School -->
+        <div
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition relative overflow-hidden group">
+          <img src="assets/logo_skb.png" alt="SKB Logo"
+            class="absolute -bottom-8 -right-8 w-48 h-48 object-contain mix-blend-multiply opacity-20 group-hover:opacity-30 transition-all duration-500 pointer-events-none z-0">
+          <div
+            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-400 to-pink-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left z-10">
+          </div>
+          <div class="mb-4 relative z-10">
+            <span
+              class="inline-block px-3 py-1 bg-slate-100 text-slate-500 rounded-full text-[10px] font-black tracking-widest uppercase">2009
+              - 2012</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2 leading-tight relative z-10">High School Certificate<br>(Science-Mathematics)</h3>
+          <p class="text-pink-500 font-semibold text-sm mb-0 relative z-10">Suankularb Wittayalai Saraburi School</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="expertise" class="mb-24">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-extrabold text-slate-900">Testing Expertise</h2>
+        <p class="text-slate-500 mt-2">Comprehensive testing capabilities across Manual and Automation</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+        <!-- Manual Testing Experience -->
+        <div
+          class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sky-500 to-indigo-500"></div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center">
+              <span class="text-xl">🔍</span>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900">Manual Testing Experience</h3>
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-sky-500 flex-shrink-0"></span>Web Applications
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-sky-500 flex-shrink-0"></span>Mobile Applications (iOS, Android)
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-sky-500 flex-shrink-0"></span>Web Services
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-sky-500 flex-shrink-0"></span>API
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-sky-500 flex-shrink-0"></span>Batch
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-sky-500 flex-shrink-0"></span>E2E
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-sky-500 flex-shrink-0"></span>Regression
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-sky-500 flex-shrink-0"></span>Firebase
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-sky-500 flex-shrink-0"></span>Test Scripts Query (MySQL , MongoDB)
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-sky-500 flex-shrink-0"></span>Test Report (Excel)
+            </li>
+          </ul>
+        </div>
+
+        <!-- Automate Testing Experience -->
+        <div
+          class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center">
+              <span class="text-xl">🤖</span>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900">Automate Testing Experience With Robot Framework</h3>
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0"></span>Web Applications
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0"></span>Mobile Applications (iOS, Android)
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0"></span>API
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0"></span>Test Scripts Query (MySQL , MongoDB)
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0"></span>Test Report (Excel)
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0"></span>Trainer & Consultant
+            </li>
+            <li class="flex items-center gap-3 text-slate-600 font-medium">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0"></span>Code Reviewer (Merge Requests)
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="journey" class="mb-24">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-extrabold text-slate-900">Career Journey</h2>
+        <p class="text-slate-500 mt-2">Professional experience and tenure details</p>
+      </div>
+
+      <div class="timeline-container max-w-4xl mx-auto">
+        <div class="timeline-line"></div>
+        <div class="timeline-fill" id="timelineFill"></div>
+
+        <div class="relative mb-16 pl-8 reveal-card" style="transition-delay: 0.1s;">
+          <div class="timeline-dot bg-white">
+            <img src="https://www.google.com/s2/favicons?domain=ttbbank.com&sz=64" alt="ttb" class="dot-favicon">
+          </div>
+          <div class="bg-white p-8 rounded-3xl shadow-sm journey-card">
+
+            <!-- Company Header -->
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-2 border-b border-slate-100 pb-4">
+              <div>
+                <h3 class="text-2xl font-extrabold text-slate-900">ttb bank</h3>
+              </div>
+              <div class="text-right">
+                <span class="block text-xs font-black text-slate-500 uppercase tracking-widest">Dec 2024 -
+                  Present</span>
+                <span
+                  class="inline-block px-3 py-1 bg-sky-50 text-sky-600 rounded-full text-[10px] font-black mt-1">Current
+                  Role</span>
+              </div>
+            </div>
+
+            <!-- Roles Container -->
+            <div class="space-y-6 mb-6">
+              <!-- Role 1 -->
+              <div class="relative pl-6 border-l-2 border-sky-100">
+                <div class="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-sky-500"></div>
+                <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-1">
+                  <p class="text-slate-800 font-bold text-base">Test Engineer <span
+                      class="text-sky-600 text-sm font-semibold ml-1">(Permanent)</span></p>
+                  <span class="text-xs font-bold text-slate-500 uppercase tracking-widest whitespace-nowrap">Jun 2025 -
+                    Present</span>
+                </div>
+              </div>
+
+              <!-- Role 2 -->
+              <div class="relative pl-6 border-l-2 border-slate-100">
+                <div class="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-slate-300"></div>
+                <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-1">
+                  <p class="text-slate-800 font-bold text-base">Senior Automate Tester <span
+                      class="text-slate-600 text-sm font-semibold ml-1">(via PP & P Advance)</span></p>
+                  <span class="text-xs font-bold text-slate-500 uppercase tracking-widest whitespace-nowrap">Dec 2024 -
+                    May 2025 <span class="uppercase text-sky-600 ml-1 font-bold">• 6&nbsp;&nbsp;M</span></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Consolidated Responsibilities -->
+            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Key Responsibilities &
+              Achievements</h4>
+            <ul class="text-sm text-slate-700 space-y-2 list-disc pl-4 marker:text-sky-400">
+              <li><strong class="text-slate-800">Test Automation & Infrastructure:</strong> Assigned to the central
+                Automate Pool team. Established the API repository structure and maintained Jenkins pipelines to enable
+                dry runs and regression testing. Developed and executed API and Mobile automated test scripts, capturing
+                results for QA validation.</li>
+              <li><strong class="text-slate-800">Manual Testing:</strong> Conducted testing on SIT and UAT environments
+                for credit card loan applications. Logged issues on Jira, followed up on resolution, and conducted
+                defect retesting.</li>
+              <li><strong class="text-slate-800">Leadership & Mentoring:</strong> Acted as a technical consultant for
+                the team. Organized and conducted automation training sessions (20-40 employees per class) and served as
+                a Teaching Assistant for other classes. Performed code reviews for Merge Requests (MRs) and mentored
+                interns.</li>
+              <li><strong class="text-slate-800">Innovation (POC):</strong> Developed an internal automation tool to
+                mitigate script failures caused by XPath changes and UI enhancements, ensuring script stability and
+                readiness (currently in POC stage).</li>
+              <li><strong class="text-slate-800">Achievement:</strong> Successfully converted from an outsource to a
+                permanent employee role as a testament to testing excellence and project contributions.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative mb-16 pl-8 reveal-card" style="transition-delay: 0.2s;">
+          <div class="timeline-dot bg-indigo-500">
+            <img src="https://www.google.com/s2/favicons?domain=gosoft.co.th&sz=64" alt="Gosoft" class="dot-favicon">
+          </div>
+          <div class="bg-white p-8 rounded-3xl shadow-sm journey-card">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+              <div>
+                <h3 class="text-xl font-extrabold text-slate-900">Gosoft (CP ALL)</h3>
+                <p class="text-indigo-600 font-bold text-sm">Senior Software Test Engineer</p>
+              </div>
+              <div class="text-right">
+                <span class="block text-xs font-black text-slate-500 uppercase tracking-widest">Jan 2023 - Nov
+                  2024</span>
+                <span
+                  class="duration-counter inline-block px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black mt-1 uppercase tracking-tighter"
+                  data-months="23">0&nbsp;&nbsp;Y&nbsp;&nbsp;0&nbsp;&nbsp;M</span>
+              </div>
+            </div>
+            <ul class="text-sm text-slate-700 space-y-2 list-disc pl-4 marker:text-indigo-400">
+              <li>Analyzed problems and understood processes in system operations. Designed scenarios and testcases.
+              </li>
+              <li>Created test data using SQL and wrote SQL queries for back-end testing.</li>
+              <li>Applied automation knowledge (Robot Framework) to create scripts, designing and developing automated
+                test scripts to reduce the manual testing workload.</li>
+              <li>Created a Project Structure according to company guidelines. Created keywords in a common file for use
+                in Robot Framework.</li>
+              <li>Wrote automation scripts using various Libraries (Selenium, Appium, DateTime, JSONLibrary, etc.).</li>
+              <li>Tested excel report files using Robot Framework and reviewed code automation between QC and developer
+                teams.</li>
+              <li>Responsible for overseeing the team, ensuring work quality, and managing the entire system testing
+                process from requirement reception and man-day estimation to test planning and execution.</li>
+              <li>Transferred knowledge to team members, ensuring everyone is capable of writing and developing
+                automated test scripts, leading to the creation of an automation project for web testing.</li>
+              <li>Logged issues, followed up on progress, summarized test results, and coordinated between development
+                and other QC teams.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative mb-16 pl-8 reveal-card" style="transition-delay: 0.3s;">
+          <div class="timeline-dot bg-rose-500">
+            <img src="https://www.google.com/s2/favicons?domain=dtac.co.th&sz=64" alt="dtac" class="dot-favicon">
+          </div>
+          <div class="bg-white p-8 rounded-3xl shadow-sm journey-card">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+              <div>
+                <h3 class="text-xl font-extrabold text-slate-900">Aware Outsourcing (at dtac)</h3>
+                <p class="text-rose-600 font-bold text-sm">Software Tester (Data Warehouse)</p>
+              </div>
+              <div class="text-right">
+                <span class="block text-xs font-black text-slate-500 uppercase tracking-widest">Jul 2022 - Dec
+                  2022</span>
+                <span
+                  class="duration-counter inline-block px-3 py-1 bg-rose-50 text-rose-600 rounded-full text-[10px] font-black mt-1 uppercase tracking-tighter"
+                  data-months="6">0&nbsp;&nbsp;M</span>
+              </div>
+            </div>
+            <ul class="text-sm text-slate-700 space-y-2 list-disc pl-4 marker:text-rose-400">
+              <li>Collected the needs of system users and prepared test data.</li>
+              <li>Created test scenarios and test scripts for system testing, and kept track of and reviewed test cases.
+              </li>
+              <li>Wrote SQL queries on DBeaver and compared data from test scripts.</li>
+              <li>Detected and reported bugs, tracked defects, recorded test results, and provided feedback to the
+                development team.</li>
+              <li>Reported system bugs to developers, reported data to users, and co-ordinated with developers, SA, and
+                PM to solve software issues.</li>
+              <li>Prepared user manuals and organized training programs for users to ensure they could actually use the
+                system in the business.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative mb-16 pl-8 reveal-card" style="transition-delay: 0.4s;">
+          <div class="timeline-dot bg-emerald-500">
+            <img src="https://www.google.com/s2/favicons?domain=ais.th&sz=64" alt="AIS" class="dot-favicon">
+          </div>
+          <div class="bg-white p-8 rounded-3xl shadow-sm journey-card">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+              <div>
+                <h3 class="text-xl font-extrabold text-slate-900">Entronica (at AIS)</h3>
+                <p class="text-emerald-600 font-bold text-sm">Software Tester (Telecom)</p>
+              </div>
+              <div class="text-right">
+                <span class="block text-xs font-black text-slate-500 uppercase tracking-widest">Jan 2021 - Jun
+                  2022</span>
+                <span
+                  class="duration-counter inline-block px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full text-[10px] font-black mt-1 uppercase tracking-tighter"
+                  data-months="18">0&nbsp;&nbsp;Y&nbsp;&nbsp;0&nbsp;&nbsp;M</span>
+              </div>
+            </div>
+            <ul class="text-sm text-slate-700 space-y-2 list-disc pl-4 marker:text-emerald-400">
+              <li>Analyzed problems and understood the process in system operations.</li>
+              <li>Designed scenarios and testcases to cover the workpiece.</li>
+              <li>Created test data using SQL and wrote SQL queries for back-end testing.</li>
+              <li>Used SoapUI to query databases or create orders (e.g., change promotion, change services).</li>
+              <li>Co-ordinated and worked closely with team members to resolve issues.</li>
+              <li>Mentored testers and developers on test standards. Participated in User Acceptance Testing (UAT).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative mb-16 pl-8 reveal-card" style="transition-delay: 0.5s;">
+          <div class="timeline-dot bg-white">
+            <img src="assets/logo_moi.png" alt="MOI" class="dot-favicon" style="padding:0; object-fit:cover;">
+          </div>
+          <div class="bg-white p-8 rounded-3xl shadow-sm journey-card">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+              <div>
+                <h3 class="text-xl font-extrabold text-slate-900">Office of the Permanent Secretary, Ministry of
+                  Industry</h3>
+                <p class="text-amber-600 font-bold text-sm">IT Administrator</p>
+              </div>
+              <div class="text-right">
+                <span class="block text-xs font-black text-slate-500 uppercase tracking-widest">Nov 2018
+                  &nbsp;&nbsp;-&nbsp;&nbsp; Dec 2020</span>
+                <span
+                  class="duration-counter inline-block px-3 py-1 bg-amber-50 text-amber-600 rounded-full text-[10px] font-black mt-1 uppercase tracking-tighter"
+                  data-months="25">0&nbsp;&nbsp;Y&nbsp;&nbsp;0&nbsp;&nbsp;M</span>
+              </div>
+            </div>
+            <ul class="text-sm text-slate-700 space-y-2 list-disc pl-4 marker:text-amber-400">
+              <li>Analysis, design, and management of employees databases.</li>
+              <li>Took care of computers and peripherals in the company to be ready to use at all times.</li>
+              <li>Provided assistance to employees in the use of computers.</li>
+              <li>Prepared and managed official government documents and correspondence.</li>
+              <li>Maintained and administered the Ministry's HR management system.</li>
+              <li>Performed other duties as assigned.</li>
+              <li>Attended team meetings.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative mb-16 pl-8 reveal-card" style="transition-delay: 0.6s;">
+          <div class="timeline-dot bg-white">
+            <img src="assets/logo_chaiyo_korea.png" alt="Chaiyo Korea" class="dot-favicon">
+          </div>
+          <div class="bg-white p-8 rounded-3xl shadow-sm journey-card">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
+              <div>
+                <h3 class="text-xl font-extrabold text-slate-900">Chaiyo Korea Co., Ltd.</h3>
+                <p class="text-fuchsia-600 font-bold text-sm">Customer Support</p>
+              </div>
+              <div class="text-right">
+                <span class="block text-xs font-black text-slate-500 uppercase tracking-widest">Nov 2016
+                  &nbsp;&nbsp;-&nbsp;&nbsp; Mar 2020</span>
+                <span
+                  class="duration-counter inline-block px-3 py-1 bg-fuchsia-50 text-fuchsia-600 rounded-full text-[10px] font-black mt-1 uppercase tracking-tighter"
+                  data-months="40">0&nbsp;&nbsp;Y&nbsp;&nbsp;0&nbsp;&nbsp;M</span>
+              </div>
+            </div>
+            <ul class="text-sm text-slate-700 space-y-2 list-disc pl-4 marker:text-fuchsia-400">
+              <li>Provided information to customers.</li>
+              <li>Received and processed customer orders, inquiries, and complaints.</li>
+              <li>Coordinated between customers, sales, and the factory.</li>
+              <li>Managed stock, inbound/outbound, and delivery status in Excel files.</li>
+              <li>Managed customers database.</li>
+              <li>Performed other customer service and sales support tasks as assigned.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="mb-24">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-extrabold text-slate-900">Licenses & Certifications</h2>
+        <p class="text-slate-500 mt-2">Professional qualifications and specialized training</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-6">
+
+        <div onclick="openCertModal('cert/Basic Cybersecurity.png')"
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:border-sky-300 transition flex flex-col md:flex-row gap-6 items-start md:items-center cursor-pointer">
+          <div class="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center flex-shrink-0 text-2xl">
+            🛡️
+          </div>
+          <div class="flex-grow">
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Basic Cybersecurity</h3>
+            <p class="text-slate-500 text-sm">NCSA Thailand / MOOC</p>
+            <p class="text-slate-400 text-xs mt-2">Certificate ID: SPG-RZ32O84KQ3LY6</p>
+          </div>
+          <div class="flex-shrink-0 text-right">
+            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold">Oct
+              2025</span>
+          </div>
+        </div>
+
+        <div onclick="openCertModal('cert/Certificate in Cybersecurity Fundamentals.png')"
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:border-sky-300 transition flex flex-col md:flex-row gap-6 items-start md:items-center cursor-pointer">
+          <div class="w-16 h-16 rounded-2xl bg-indigo-50 flex items-center justify-center flex-shrink-0 text-2xl">
+            💻
+          </div>
+          <div class="flex-grow">
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Certificate in Cybersecurity Fundamentals</h3>
+            <p class="text-slate-500 text-sm">NCSA / THNCA</p>
+            <p class="text-slate-400 text-xs mt-2">Verification Code: 3218538897RP</p>
+          </div>
+          <div class="flex-shrink-0 text-right">
+            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold">Oct
+              2025</span>
+          </div>
+        </div>
+
+        <div onclick="openCertModal('cert/Cybersecurity Foundation Certificate.png')"
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:border-sky-300 transition flex flex-col md:flex-row gap-6 items-start md:items-center cursor-pointer">
+          <div class="w-16 h-16 rounded-2xl bg-sky-50 flex items-center justify-center flex-shrink-0 text-2xl">
+            🔒
+          </div>
+          <div class="flex-grow">
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Cybersecurity Foundation Certificate</h3>
+            <p class="text-slate-500 text-sm">MDES / ONDE / DEF / NCSA / THNCA</p>
+            <p class="text-slate-400 text-xs mt-2">Verification Code: 8231227075RP</p>
+          </div>
+          <div class="flex-shrink-0 text-right">
+            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold">Jun
+              2025</span>
+          </div>
+        </div>
+
+        <div onclick="openCertModal('cert/Security Operation Center (SOC) 24-7 238.png')"
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:border-sky-300 transition flex flex-col md:flex-row gap-6 items-start md:items-center cursor-pointer">
+          <div class="w-16 h-16 rounded-2xl bg-emerald-50 flex items-center justify-center flex-shrink-0 text-2xl">
+            🎓
+          </div>
+          <div class="flex-grow">
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Security Operation Center (SOC) 24/7 #238</h3>
+            <p class="text-slate-500 text-sm">Security Operation Center (SOC) 24/7:
+              How to Monitor Cyber Threats to Stay Ahead of Hackers</p>
+            <p class="text-slate-400 text-xs mt-2">Panyapiwat Institute of Management</p>
+          </div>
+          <div class="flex-shrink-0 text-right">
+            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold">Apr
+              2025</span>
+          </div>
+        </div>
+
+        <div onclick="openCertModal('cert/Gosoft Academy Certificate.png')"
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:border-sky-300 transition flex flex-col md:flex-row gap-6 items-start md:items-center cursor-pointer">
+          <div class="w-16 h-16 rounded-2xl bg-fuchsia-50 flex items-center justify-center flex-shrink-0 text-2xl">
+            🏆
+          </div>
+          <div class="flex-grow">
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Gosoft Academy Certificate</h3>
+            <p class="text-slate-500 text-sm">Gosoft (CP ALL)</p>
+          </div>
+          <div class="flex-shrink-0 text-right">
+            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold">Oct
+              2023</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Career Goals Section -->
+    <section id="goals" class="mb-24">
+      <div
+        class="bg-gradient-to-br from-sky-100/80 via-slate-50 to-purple-100/80 rounded-[3rem] p-12 md:p-16 overflow-hidden relative shadow-2xl border-2 border-sky-300/80">
+        <div class="absolute top-0 right-0 w-80 h-80 bg-sky-300/40 blur-[100px] rounded-full"
+          style="animation: float-blob 10s infinite ease-in-out;"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-indigo-300/40 blur-[100px] rounded-full"
+          style="animation: float-blob 14s infinite ease-in-out reverse;"></div>
+        <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-fuchsia-300/40 blur-[100px] rounded-full"
+          style="animation: float-center 12s infinite ease-in-out;">
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto">
+          <div class="text-center mb-12">
+            <span class="text-sky-600 font-black text-base md:text-lg uppercase tracking-[0.4em] mb-4 block">Future
+              Vision</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">Career Goals & Aspirations</h2>
+            <p class="text-slate-500 text-lg leading-relaxed max-w-3xl mx-auto">
+              Committed to combining Software Testing skills with Cybersecurity expertise
+              to elevate system testing to the highest security standards. My goal is to become a DevSecOps
+              Specialist capable of building fast and secure Automation Pipelines.
+            </p>
+          </div>
+
+          <!-- Academic Roadmap Timeline -->
+          <div class="mb-14">
+            <h3 class="text-lg font-bold text-sky-600 uppercase tracking-widest mb-8 flex items-center gap-2">
+              <span class="text-xl">🎯</span> Academic Roadmap
+            </h3>
+            <div class="relative">
+              <!-- Horizontal line -->
+              <div class="hidden md:block absolute top-6 left-0 right-0 h-[3px] bg-slate-200 rounded-full"></div>
+              <div
+                class="hidden md:block absolute top-6 left-0 h-[3px] bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400 rounded-full"
+                style="width: 25%;"></div>
+
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Milestone 1 - Completed -->
+                <div class="relative flex flex-col items-center text-center group">
+                  <div
+                    class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-400 to-sky-500 flex items-center justify-center shadow-lg shadow-sky-500/20 ring-4 ring-white z-10 group-hover:scale-110 transition-transform">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                  <div
+                    class="mt-4 bg-white border border-slate-200 rounded-2xl p-4 w-full shadow-sm hover:border-sky-300 hover:shadow-md transition-all">
+                    <span class="text-[10px] font-black text-sky-500 uppercase tracking-widest block mb-2">Nov
+                      2026</span>
+                    <p class="text-slate-900 font-bold text-sm leading-tight">Coursework Completion</p>
+                    <p class="text-slate-500 text-xs mt-1">15 Subjects Completed (Term 1)</p>
+                  </div>
+                </div>
+
+                <!-- Milestone 2 -->
+                <div class="relative flex flex-col items-center text-center group">
+                  <div
+                    class="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 ring-4 ring-white z-10 group-hover:scale-110 transition-transform">
+                    <span class="text-white font-black text-sm">2</span>
+                  </div>
+                  <div
+                    class="mt-4 bg-white border border-slate-200 rounded-2xl p-4 w-full shadow-sm hover:border-indigo-300 hover:shadow-md transition-all">
+                    <span class="text-[10px] font-black text-indigo-500 uppercase tracking-widest block mb-2">Dec
+                      2026</span>
+                    <p class="text-slate-900 font-bold text-sm leading-tight">CompTIA Security+</p>
+                    <p class="text-slate-500 text-xs mt-1">Certification Exam</p>
+                  </div>
+                </div>
+
+                <!-- Milestone 3 -->
+                <div class="relative flex flex-col items-center text-center group">
+                  <div
+                    class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-purple-500 flex items-center justify-center shadow-lg shadow-purple-500/20 ring-4 ring-white z-10 group-hover:scale-110 transition-transform">
+                    <span class="text-white font-black text-sm">3</span>
+                  </div>
+                  <div
+                    class="mt-4 bg-white border border-slate-200 rounded-2xl p-4 w-full shadow-sm hover:border-purple-300 hover:shadow-md transition-all">
+                    <span class="text-[10px] font-black text-purple-500 uppercase tracking-widest block mb-2">Dec 2026 -
+                      Apr 2027</span>
+                    <p class="text-slate-900 font-bold text-sm leading-tight">Senior Project</p>
+                    <p class="text-slate-500 text-xs mt-1">Graduation Project (Term 2)</p>
+                  </div>
+                </div>
+
+                <!-- Milestone 4 -->
+                <div class="relative flex flex-col items-center text-center group">
+                  <div
+                    class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-500 flex items-center justify-center shadow-lg shadow-emerald-500/20 ring-4 ring-white z-10 group-hover:scale-110 transition-transform">
+                    <span class="text-xl">🎓</span>
+                  </div>
+                  <div
+                    class="mt-4 bg-white border border-slate-200 rounded-2xl p-4 w-full shadow-sm hover:border-emerald-300 hover:shadow-md transition-all">
+                    <span class="text-[10px] font-black text-emerald-500 uppercase tracking-widest block mb-2">May
+                      2027</span>
+                    <p class="text-slate-900 font-bold text-sm leading-tight">B.Sc. Cybersecurity</p>
+                    <p class="text-slate-500 text-xs mt-1">Graduation 🎉</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Building -->
+          <div class="mb-14">
+            <h3 class="text-lg font-bold text-amber-600 uppercase tracking-widest mb-8 flex items-center gap-2">
+              <span class="text-xl">🏆</span> Profile Building
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <!-- TOEIC -->
+              <div
+                class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:border-amber-300 hover:shadow-md transition-all group">
+                <div class="flex items-center gap-3 mb-3">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="text-lg">🌐</span>
+                  </div>
+                  <h4 class="text-slate-900 font-bold">TOEIC</h4>
+                </div>
+                <p class="text-slate-500 text-sm">English Proficiency Certification</p>
+              </div>
+
+              <!-- Cybersecurity Certs -->
+              <div
+                class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:border-rose-300 hover:shadow-md transition-all group">
+                <div class="flex items-center gap-3 mb-3">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="text-lg">🛡️</span>
+                  </div>
+                  <h4 class="text-slate-900 font-bold">Security Certifications</h4>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <span class="px-2.5 py-1 bg-rose-50 text-rose-600 rounded-lg text-xs font-bold">CySA+</span>
+                  <span class="px-2.5 py-1 bg-rose-50 text-rose-600 rounded-lg text-xs font-bold">CEH</span>
+                  <span class="px-2.5 py-1 bg-rose-50 text-rose-600 rounded-lg text-xs font-bold">CISSP</span>
+                  <span class="px-2.5 py-1 bg-rose-50 text-rose-600 rounded-lg text-xs font-bold">OSCP</span>
+                </div>
+              </div>
+
+              <!-- Master's Degree -->
+              <div
+                class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:border-violet-300 hover:shadow-md transition-all group">
+                <div class="flex items-center gap-3 mb-3">
+                  <div
+                    class="w-10 h-10 rounded-xl bg-violet-50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="text-lg">🎓</span>
+                  </div>
+                  <h4 class="text-slate-900 font-bold">Master's Degree</h4>
+                </div>
+                <p class="text-slate-500 text-sm">Master's in Artificial Intelligence</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Career Goals Tags -->
+          <div class="text-center">
+            <h3
+              class="text-lg font-bold text-emerald-600 uppercase tracking-widest mb-6 flex items-center justify-center gap-2">
+              <span class="text-xl">🚀</span> Career Goals
+            </h3>
+            <div class="flex flex-wrap justify-center gap-4">
+              <span
+                class="px-5 py-2.5 bg-sky-50 text-sky-600 rounded-full text-sm font-bold border border-sky-200 hover:border-sky-400 hover:shadow-md transition">Security
+                Automation</span>
+              <span
+                class="px-5 py-2.5 bg-indigo-50 text-indigo-600 rounded-full text-sm font-bold border border-indigo-200 hover:border-indigo-400 hover:shadow-md transition">DevSecOps</span>
+              <span
+                class="px-5 py-2.5 bg-purple-50 text-purple-600 rounded-full text-sm font-bold border border-purple-200 hover:border-purple-400 hover:shadow-md transition">Continuous
+                Learning</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+
+    <section id="tools" class="mb-24">
+      <h2 class="text-3xl font-extrabold text-slate-900 mb-12 text-center">Technical Ecosystem</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 items-start">
+
+        <!-- Database -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2 mb-6"><span class="text-xl">🗄️</span>
+            <h3 class="text-lg font-extrabold text-indigo-600">Database</h3>
+          </div>
+          <div class="tool-card"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/DBeaver_logo.svg"
+              class="tool-icon" alt="DBeaver"><span class="tool-name">DBeaver</span></div>
+          <div class="tool-card"><img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" class="tool-icon"
+              alt="MySQL"><span class="tool-name">MySQL Workbench</span></div>
+          <div class="tool-card"><img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-plain.svg"
+              class="tool-icon" alt="SSMS"><span class="tool-name">SQL Server Management Studio</span></div>
+          <div class="tool-card"><img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"
+              class="tool-icon" alt="MongoDB"><span class="tool-name">MongoDB</span></div>
+        </div>
+
+        <!-- Automate -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2 mb-6"><span class="text-xl">🤖</span>
+            <h3 class="text-lg font-extrabold text-sky-600">Automate</h3>
+          </div>
+          <div class="tool-card"><img src="https://api.iconify.design/logos:appium.svg" class="tool-icon"
+              alt="Appium"><span class="tool-name">Appium Server GUI</span></div>
+          <div class="tool-card"><img src="https://api.iconify.design/logos:appium.svg" class="tool-icon"
+              alt="Inspector"><span class="tool-name">Appium Inspector</span></div>
+          <div class="tool-card"><img src="https://img.icons8.com/color/48/visual-studio-code-2019.png"
+              class="tool-icon" alt="VS Code"><span class="tool-name">Visual Studio Code</span></div>
+          <div class="tool-card"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Robot-framework-logo.png"
+              class="tool-icon" alt="Robot"><span class="tool-name">Robot Framework (Library)</span></div>
+        </div>
+
+        <!-- CI/CD -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2 mb-6"><span class="text-xl">🚀</span>
+            <h3 class="text-lg font-extrabold text-pink-600">CI/CD</h3>
+          </div>
+          <div class="tool-card"><img src="https://img.icons8.com/color/48/docker.png" class="tool-icon"
+              alt="Docker"><span class="tool-name">Docker</span></div>
+          <div class="tool-card"><img src="https://img.icons8.com/color/48/jenkins.png" class="tool-icon"
+              alt="Jenkins"><span class="tool-name">Jenkins</span></div>
+          <div class="tool-card"><img src="https://img.icons8.com/color/48/gitlab.png" class="tool-icon"
+              alt="GitLab"><span class="tool-name">GitLab</span></div>
+          <div class="tool-card"><img src="https://img.icons8.com/color/48/bitbucket.png" class="tool-icon"
+              alt="Bitbucket"><span class="tool-name">Bitbucket</span></div>
+          <div class="tool-card"><img src="https://api.iconify.design/logos:sourcetree.svg" class="tool-icon"
+              alt="Sourcetree"><span class="tool-name">Sourcetree</span></div>
+        </div>
+
+        <!-- API -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2 mb-6"><span class="text-xl">🔌</span>
+            <h3 class="text-lg font-extrabold text-orange-600">API</h3>
+          </div>
+          <div class="tool-card"><img
+              src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/external-postman-is-the-only-complete-api-development-environment-logo-color-tal-revivo.png"
+              class="tool-icon" alt="Postman"><span class="tool-name">Postman</span></div>
+          <div class="tool-card"><img src="https://api.iconify.design/mdi:api.svg?color=%2310b981" class="tool-icon"
+              alt="SoapUI"><span class="tool-name">SoapUI</span></div>
+        </div>
+
+        <!-- Firebase -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2 mb-6"><span class="text-xl">🔥</span>
+            <h3 class="text-lg font-extrabold text-amber-500">Firebase</h3>
+          </div>
+          <div class="tool-card"><img src="https://img.icons8.com/color/48/firebase.png" class="tool-icon"
+              alt="Firebase"><span class="tool-name">Firebase</span></div>
+        </div>
+
+        <!-- Flowchart -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2 mb-6"><span class="text-xl">📐</span>
+            <h3 class="text-lg font-extrabold text-violet-600">Flowchart</h3>
+          </div>
+          <div class="tool-card"><img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" class="tool-icon"
+              alt="Figma"><span class="tool-name">Figma</span></div>
+          <div class="tool-card"><img src="https://api.iconify.design/logos:miro-icon.svg" class="tool-icon"
+              alt="Miro"><span class="tool-name">Miro</span></div>
+        </div>
+
+        <!-- Remote -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2 mb-6"><span class="text-xl">🖥️</span>
+            <h3 class="text-lg font-extrabold text-teal-600">Remote</h3>
+          </div>
+          <div class="tool-card"><img src="assets/WinSCP.png" class="tool-icon" alt="WinSCP"
+              referrerpolicy="no-referrer"><span class="tool-name">WinSCP</span></div>
+          <div class="tool-card"><img src="assets/UltraVNC_Icon_green.png" class="tool-icon" alt="UltraVNC"
+              referrerpolicy="no-referrer"><span class="tool-name">UltraVNC
+              Viewer</span></div>
+        </div>
+
+        <!-- Batch -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2 mb-6"><span class="text-xl">⚙️</span>
+            <h3 class="text-lg font-extrabold text-slate-600">Batch</h3>
+          </div>
+          <div class="tool-card"><img src="https://img.icons8.com/color/48/console.png" class="tool-icon"
+              alt="Rundeck"><span class="tool-name">Rundeck</span></div>
+        </div>
+
+        <!-- Oncloud (AWS) -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2 mb-6"><span class="text-xl">☁️</span>
+            <h3 class="text-lg font-extrabold text-yellow-600">Oncloud</h3>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h4 class="font-extrabold text-slate-900 mb-4 flex items-center gap-2">
+              <img src="https://img.icons8.com/color/48/amazon-web-services.png" alt="AWS Logo" class="w-6 h-6">
+              AWS
+            </h4>
+            <ul class="space-y-3 pl-2">
+              <li class="flex items-center justify-between text-sm">
+                <span class="flex items-center gap-3 text-slate-700 font-semibold">
+                  <span class="w-2 h-2 rounded-full bg-yellow-500 flex-shrink-0"></span>DynamoDB
+                </span>
+                <span class="text-xs text-slate-400">Verify database</span>
+              </li>
+              <li class="flex items-center justify-between text-sm">
+                <span class="flex items-center gap-3 text-slate-700 font-semibold">
+                  <span class="w-2 h-2 rounded-full bg-yellow-500 flex-shrink-0"></span>Batch
+                </span>
+                <span class="text-xs text-slate-400">Run Jobs, Log</span>
+              </li>
+              <li class="flex items-center justify-between text-sm">
+                <span class="flex items-center gap-3 text-slate-700 font-semibold">
+                  <span class="w-2 h-2 rounded-full bg-yellow-500 flex-shrink-0"></span>S3
+                </span>
+                <span class="text-xs text-slate-400">Keep files</span>
+              </li>
+              <li class="flex items-center justify-between text-sm">
+                <span class="flex items-center gap-3 text-slate-700 font-semibold">
+                  <span class="w-2 h-2 rounded-full bg-yellow-500 flex-shrink-0"></span>Cognito
+                </span>
+                <span class="text-xs text-slate-400">Authentication</span>
+              </li>
+              <li class="flex items-center justify-between text-sm">
+                <span class="flex items-center gap-3 text-slate-700 font-semibold">
+                  <span class="w-2 h-2 rounded-full bg-yellow-500 flex-shrink-0"></span>CloudWatch
+                </span>
+                <span class="text-xs text-slate-400">Log data</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Progress Tracking -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2 mb-6"><span class="text-xl">📋</span>
+            <h3 class="text-lg font-extrabold text-blue-600">Progress Tracking</h3>
+          </div>
+          <div class="tool-card"><img src="https://img.icons8.com/color/48/jira.png" class="tool-icon" alt="Jira"><span
+              class="tool-name">Jira Software</span></div>
+          <div class="tool-card"><img src="https://img.icons8.com/color/48/trello.png" class="tool-icon"
+              alt="Trello"><span class="tool-name">Trello</span></div>
+        </div>
+
+        <!-- Document -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2 mb-6"><span class="text-xl">📄</span>
+            <h3 class="text-lg font-extrabold text-green-600">Document</h3>
+          </div>
+          <div class="tool-card"><img src="assets/ms_office.jpg" class="tool-icon" alt="Office"
+              referrerpolicy="no-referrer"><span class="tool-name">Microsoft
+              Offices</span></div>
+          <div class="tool-card"><img src="https://api.iconify.design/logos:microsoft-icon.svg" class="tool-icon"
+              alt="M365"><span class="tool-name">Microsoft 365</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Soft Skills Section -->
+    <section id="soft-skills" class="mb-24">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-extrabold text-slate-900">Soft Skills</h2>
+        <p class="text-slate-500 mt-2">Core interpersonal and cognitive abilities</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all group text-center">
+          <div
+            class="w-16 h-16 mx-auto bg-teal-50 text-teal-500 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform">
+            👑
+          </div>
+          <h3 class="font-bold text-slate-800">Leadership & Mentoring</h3>
+        </div>
+
+        <div
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all group text-center">
+          <div
+            class="w-16 h-16 mx-auto bg-sky-50 text-sky-500 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform">
+            💡
+          </div>
+          <h3 class="font-bold text-slate-800">Problem Solving</h3>
+        </div>
+
+        <div
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all group text-center">
+          <div
+            class="w-16 h-16 mx-auto bg-indigo-50 text-indigo-500 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform">
+            🤝
+          </div>
+          <h3 class="font-bold text-slate-800">Team Collaboration</h3>
+        </div>
+
+        <div
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all group text-center">
+          <div
+            class="w-16 h-16 mx-auto bg-purple-50 text-purple-500 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform">
+            🌊
+          </div>
+          <h3 class="font-bold text-slate-800">Adaptability</h3>
+        </div>
+
+        <div
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all group text-center">
+          <div
+            class="w-16 h-16 mx-auto bg-rose-50 text-rose-500 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform">
+            🧠
+          </div>
+          <h3 class="font-bold text-slate-800">Analytical Thinking</h3>
+        </div>
+
+        <div
+          class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all group text-center">
+          <div
+            class="w-16 h-16 mx-auto bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform">
+            💬
+          </div>
+          <h3 class="font-bold text-slate-800">Effective Communication</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="mb-24">
+      <div class="border-2 border-slate-200 rounded-[5rem] p-15 md:p-20 relative">
+        <div class="text-center mb-16 relative z-10">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">My Hobbies</h2>
+          <p class="text-slate-500 text-lg">Relaxing and self-improvement activities in my free time 🎶🏊‍♂️🎸📚</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+
+          <!-- Hobby 1: Swimming -->
+          <div
+            class="bg-white border border-slate-100 shadow-sm hover:shadow-md rounded-3xl p-6 transition group text-center overflow-hidden relative">
+            <div class="h-32 flex justify-center items-center relative mb-4">
+              <div
+                class="text-6xl group-hover:-translate-y-4 group-hover:animate-bounce transition-all duration-500 relative z-10">
+                🏊‍♂️</div>
+              <div
+                class="absolute bottom-4 left-0 w-full flex justify-center space-x-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                <span class="text-2xl text-sky-400 group-hover:animate-pulse">~</span>
+                <span class="text-2xl text-sky-400 group-hover:animate-pulse" style="animation-delay: 150ms;">~</span>
+                <span class="text-2xl text-sky-400 group-hover:animate-pulse" style="animation-delay: 300ms;">~</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Swimming</h3>
+            <p class="text-slate-500 text-sm">For health and refreshing the body</p>
+          </div>
+
+          <!-- Hobby 2: Guitar -->
+          <div
+            class="bg-white border border-slate-100 shadow-sm hover:shadow-md rounded-3xl p-6 transition group text-center overflow-hidden relative">
+            <div class="h-32 flex justify-center items-center relative mb-4">
+              <div
+                class="text-6xl group-hover:rotate-12 group-hover:scale-110 transition-transform duration-500 z-10 origin-bottom">
+                🎸</div>
+              <div
+                class="absolute top-4 right-1/4 text-2xl text-rose-400 opacity-0 group-hover:opacity-100 group-hover:-translate-y-4 group-hover:translate-x-2 transition-all duration-700">
+                🎵</div>
+              <div
+                class="absolute top-8 left-1/4 text-xl text-amber-400 opacity-0 group-hover:opacity-100 group-hover:-translate-y-6 group-hover:-translate-x-2 transition-all duration-500"
+                style="transition-delay: 100ms;">🎶</div>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Playing Guitar</h3>
+            <p class="text-slate-500 text-sm">Creating relaxing music</p>
+          </div>
+
+          <!-- Hobby 3: Self-study -->
+          <div
+            class="bg-white border border-slate-100 shadow-sm hover:shadow-md rounded-3xl p-6 transition group text-center overflow-hidden relative">
+            <div class="h-32 flex justify-center items-center relative mb-4">
+              <div class="text-6xl group-hover:-translate-y-2 transition-transform duration-300 relative z-10 mt-6">📚
+              </div>
+              <div
+                class="absolute top-7 left-7 text-4xl text-amber-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-hover:animate-pulse">
+                💡</div>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Self-Study</h3>
+            <p class="text-slate-500 text-sm">Keeping up with new trends and tech</p>
+          </div>
+
+          <!-- Hobby 4: Music Composition (Vinyl Player) -->
+          <div
+            class="bg-white border border-slate-100 shadow-sm hover:shadow-md rounded-3xl p-6 transition group text-center flex flex-col justify-between">
+            <div class="h-32 flex justify-center items-center mb-4 relative overflow-visible">
+              <div class="transform scale-[0.6] origin-center translate-y-2 mt-4">
+                <div id="playerContainer" class="vinyl-container relative group/vinyl">
+                  <div class="tonearm z-30" id="tonearm"></div>
+
+                  <div class="vinyl-disc relative z-10">
+                    <div class="vinyl-label">
+                      <div class="vinyl-center"></div>
+                    </div>
+                  </div>
+                  <!-- Play Button inside vinyl center -->
+                  <button id="playBtn"
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-sky-500 hover:bg-sky-400 text-white rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm transition-all z-20">
+                    <span id="playIcon" class="text-2xl ml-1">▶</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4">
+              <h3 class="text-xl font-bold text-slate-900 mb-1">Music Composition</h3>
+              <p class="text-slate-500 text-sm mb-3">Click the player to listen to my song</p>
+
+              <!-- Audio Progress Bar -->
+              <div
+                class="flex items-center gap-1.5 mt-2 w-full px-2 mx-auto opacity-70 hover:opacity-100 transition-opacity">
+                <span id="currentTime" class="text-[9px] text-slate-500 shrink-0 w-6 text-right font-mono">0:00</span>
+                <input type="range" id="audioSeek" min="0" max="100" value="0"
+                  class="flex-1 min-w-[30px] h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-sky-400 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-2.5 [&::-webkit-slider-thumb]:h-2.5 [&::-webkit-slider-thumb]:bg-sky-400 [&::-webkit-slider-thumb]:rounded-full">
+                <span id="totalTime" class="text-[9px] text-slate-500 shrink-0 w-6 text-left font-mono">0:00</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Audio Player for reliable local playback -->
+        <audio id="bg-audio" loop preload="auto">
+          <source src="./assets/ดีต่อใจ (Warm Embrace).mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </section>
+
+    <!-- Additional Info Footer -->
+    <div class="text-center pt-8 pb-12">
+      <p class="text-lg text-slate-500 font-medium">🗣️ Languages: Thai (Native) <span
+          class="text-slate-300 mx-2">|</span> English (Fair)</p>
+    </div>
+
+    <!-- PDF Appendix: Certificates Images (Moved to very end) -->
+    <section id="pdf-certificates-appendix" class="hidden print:block w-full"
+      style="page-break-before: always; break-before: page;">
+      <div class="text-center mb-8 pt-4">
+        <h2 class="text-3xl font-extrabold text-slate-900">Appendix: Certificates</h2>
+      </div>
+
+      <!-- Page 1: 2 Certs -->
+      <div class="w-full h-[90vh] flex flex-col justify-around items-center"
+        style="page-break-after: always; break-after: page;">
+        <div class="w-full flex justify-center items-center h-[45%]">
+          <img src="cert/Basic Cybersecurity.png" alt="Basic Cybersecurity"
+            class="max-w-[95%] max-h-full object-contain border border-slate-200 shadow-sm rounded-xl">
+        </div>
+        <div class="w-full flex justify-center items-center h-[45%]">
+          <img src="cert/Certificate in Cybersecurity Fundamentals.png" alt="Certificate in Cybersecurity Fundamentals"
+            class="max-w-[95%] max-h-full object-contain border border-slate-200 shadow-sm rounded-xl">
+        </div>
+      </div>
+
+      <!-- Page 2: 2 Certs -->
+      <div class="w-full h-[90vh] flex flex-col justify-around items-center"
+        style="page-break-after: always; break-after: page;">
+        <div class="w-full flex justify-center items-center h-[45%]">
+          <img src="cert/Cybersecurity Foundation Certificate.png" alt="Cybersecurity Foundation Certificate"
+            class="max-w-[95%] max-h-full object-contain border border-slate-200 shadow-sm rounded-xl">
+        </div>
+        <div class="w-full flex justify-center items-center h-[45%]">
+          <img src="cert/Security Operation Center (SOC) 24-7 238.png" alt="Security Operation Center"
+            class="max-w-[95%] max-h-full object-contain border border-slate-200 shadow-sm rounded-xl">
+        </div>
+      </div>
+
+      <!-- Page 3: 1 Cert -->
+      <div class="w-full h-[90vh] flex flex-col justify-start items-center pt-8">
+        <div class="w-full flex justify-center items-center h-[45%]">
+          <img src="cert/Gosoft Academy Certificate.png" alt="Gosoft Academy Certificate"
+            class="max-w-[95%] max-h-full object-contain border border-slate-200 shadow-sm rounded-xl">
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const playerContainer = document.getElementById('playerContainer');
+    const audioPlayer = document.getElementById('bg-audio');
+
+    // Progress Bar Elements
+    const audioSeek = document.getElementById('audioSeek');
+    const currentTimeEl = document.getElementById('currentTime');
+    const totalTimeEl = document.getElementById('totalTime');
+
+    let isPlaying = false;
+    let heartInterval = null;
+    const heartContainer = document.getElementById('heartContainer');
+    const heartEmojis = ['💖', '💕', '💓', '💗', '💞', '💘', '❤️', '✨', '🎉', '🎊', '🥳', '🥰', '🎈'];
+
+    function spawnHeart() {
+      if (!heartContainer) return;
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+      heartContainer.appendChild(heart);
+
+      setTimeout(() => {
+        if (heart.parentNode) {
+          heart.parentNode.removeChild(heart);
+        }
+      }, 10000);
+    }
+
+    // Helper: Format Time
+    function formatTime(seconds) {
+      if (isNaN(seconds)) return "0:00";
+      const min = Math.floor(seconds / 60);
+      const sec = Math.floor(seconds % 60);
+      return `${min}:${sec.toString().padStart(2, '0')}`;
+    }
+
+    // Audio Events
+    audioPlayer.addEventListener('loadedmetadata', () => {
+      audioSeek.max = audioPlayer.duration;
+      totalTimeEl.innerText = formatTime(audioPlayer.duration);
+    });
+
+    audioPlayer.addEventListener('timeupdate', () => {
+      audioSeek.value = audioPlayer.currentTime;
+      currentTimeEl.innerText = formatTime(audioPlayer.currentTime);
+    });
+
+    audioSeek.addEventListener('input', () => {
+      audioPlayer.currentTime = audioSeek.value;
+      currentTimeEl.innerText = formatTime(audioPlayer.currentTime);
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (!isPlaying) {
+        // Play the audio element
+        audioPlayer.volume = 0.5;
+        audioPlayer.play();
+        isPlaying = true;
+        updateUI(true);
+        if (!heartInterval) {
+          heartInterval = setInterval(spawnHeart, 300);
+        }
+      } else {
+        // Pause the audio element
+        audioPlayer.pause();
+        isPlaying = false;
+        updateUI(false);
+        if (heartInterval) {
+          clearInterval(heartInterval);
+          heartInterval = null;
+        }
+      }
+    });
+
+    function updateUI(playing) {
+      if (playing) {
+        playerContainer.classList.add('playing');
+        playIcon.innerText = '⏸';
+        playBtn.classList.replace('bg-sky-500', 'bg-indigo-500');
+      } else {
+        playerContainer.classList.remove('playing');
+        playIcon.innerText = '▶';
+        playBtn.classList.replace('bg-indigo-500', 'bg-sky-500');
+      }
+    }
+
+    const wrapText = (str) => {
+      if (str.length <= 16) return str;
+      const words = str.split(' ');
+      let lines = [];
+      let currentLine = "";
+      words.forEach(word => {
+        if ((currentLine + word).length > 16) {
+          lines.push(currentLine.trim());
+          currentLine = word + " ";
+        } else {
+          currentLine += word + " ";
+        }
+      });
+      lines.push(currentLine.trim());
+      return lines;
+    };
+
+    function openCertModal(imgSrc) {
+      const modal = document.getElementById('certModal');
+      const img = document.getElementById('certImage');
+      img.src = imgSrc;
+      img.onerror = () => { img.alt = 'Certificate image not found. Please upload to ' + imgSrc; };
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      setTimeout(() => modal.classList.remove('opacity-0'), 10);
+    }
+
+    function closeCertModal() {
+      const modal = document.getElementById('certModal');
+      modal.classList.add('opacity-0');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }, 300);
+    }
+
+    // Auto calculate QA experience from Jan 1, 2021
+    function calculateQAExperience() {
+      const start = new Date('2021-01-01');
+      const now = new Date();
+      let years = now.getFullYear() - start.getFullYear();
+      let months = now.getMonth() - start.getMonth();
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      const qaValEl = document.getElementById('qa-exp-val');
+      if (qaValEl) {
+        // e.g. 5 Y 7 M
+        qaValEl.innerHTML = `${years} <span class="font-bold text-indigo-500 mr-1">Y</span> ${months} <span class="font-bold text-indigo-500">M</span>`;
+      }
+    }
+
+    // Calculate on load
+    calculateQAExperience();
+
+    // ==========================================
+    // Scroll Reveal Animation
+    // ==========================================
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px' });
+
+    document.querySelectorAll('.reveal-card').forEach(card => {
+      revealObserver.observe(card);
+    });
+
+    // ==========================================
+    // Animated Timeline Fill Line
+    // ==========================================
+    function updateTimelineFill() {
+      const container = document.querySelector('.timeline-container');
+      const fill = document.getElementById('timelineFill');
+      if (!container || !fill) return;
+
+      const rect = container.getBoundingClientRect();
+      const containerTop = rect.top;
+      const containerHeight = rect.height;
+      const viewportCenter = window.innerHeight * 0.6;
+
+      if (containerTop > viewportCenter) {
+        fill.style.height = '0px';
+        return;
+      }
+
+      const scrolledInto = viewportCenter - containerTop;
+      const fillHeight = Math.min(Math.max(scrolledInto, 0), containerHeight);
+      fill.style.height = fillHeight + 'px';
+    }
+
+    window.addEventListener('scroll', updateTimelineFill, { passive: true });
+    updateTimelineFill();
+
+    // ==========================================
+    // Animated Duration Counter
+    // ==========================================
+    function animateCounter(el) {
+      const totalMonths = parseInt(el.dataset.months, 10);
+      if (isNaN(totalMonths)) return;
+
+      const targetYears = Math.floor(totalMonths / 12);
+      const targetMonths = totalMonths % 12;
+      const duration = 1500; // ms
+      const startTime = performance.now();
+
+      function tick(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+
+        const currentTotal = Math.round(eased * totalMonths);
+        const y = Math.floor(currentTotal / 12);
+        const m = currentTotal % 12;
+
+        if (totalMonths >= 12) {
+          el.innerHTML = `${y}&nbsp;&nbsp;Y&nbsp;&nbsp;${m}&nbsp;&nbsp;M`;
+        } else {
+          el.innerHTML = `${m}&nbsp;&nbsp;M`;
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          // Set final value precisely
+          if (totalMonths >= 12) {
+            el.innerHTML = `${targetYears}&nbsp;&nbsp;Y&nbsp;&nbsp;${targetMonths}&nbsp;&nbsp;M`;
+          } else {
+            el.innerHTML = `${targetMonths}&nbsp;&nbsp;M`;
+          }
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.duration-counter').forEach(el => {
+      counterObserver.observe(el);
+    });
+
+    // Force all counters to final value before printing
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.duration-counter').forEach(el => {
+        const totalMonths = parseInt(el.dataset.months, 10);
+        if (!isNaN(totalMonths)) {
+          const targetYears = Math.floor(totalMonths / 12);
+          const targetMonths = totalMonths % 12;
+          if (totalMonths >= 12) {
+            el.innerHTML = `${targetYears}&nbsp;&nbsp;Y&nbsp;&nbsp;${targetMonths}&nbsp;&nbsp;M`;
+          } else {
+            el.innerHTML = `${targetMonths}&nbsp;&nbsp;M`;
+          }
+        }
+      });
+    });
+  </script>
+
+  <!-- Certificate Modal -->
+  <div id="certModal" onclick="closeCertModal()"
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300 p-4">
+    <div class="relative max-w-4xl w-full mx-auto">
+      <button onclick="closeCertModal()"
+        class="absolute -top-12 right-0 text-white hover:text-sky-400 transition text-4xl">&times;</button>
+      <img id="certImage" src="" alt="Certificate"
+        class="w-full max-h-[80vh] object-contain rounded-xl shadow-2xl bg-white cursor-pointer">
+    </div>
+  </div>
+
+
+  <script>
+
+
+    // ==========================================
+    // Basic Security (Anti-Inspect) - Optional
+    // ==========================================
+
+    document.addEventListener('contextmenu', event => event.preventDefault()); // Block right click
+    document.addEventListener('keydown', function (e) {
+      // Block F12
+      if (e.key === 'F12' || e.keyCode === 123) {
+        e.preventDefault();
+      }
+      // Block Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+U (View Source)
+      if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) {
+        e.preventDefault();
+      }
+      if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+        e.preventDefault();
+      }
+    });
+
+  </script>
+</body>
+
+</html>
