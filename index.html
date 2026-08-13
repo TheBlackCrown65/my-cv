@@ -1807,7 +1807,10 @@
         isPlaying = true;
         updateUI(true);
         if (!heartInterval) {
-          heartInterval = setInterval(spawnHeart, 800);
+          // Disable emoji on mobile to prevent lag completely
+          if (window.innerWidth > 768) {
+            heartInterval = setInterval(spawnHeart, 800);
+          }
         }
       } else {
         // Pause the audio element
@@ -2008,12 +2011,15 @@
 
   <!-- Certificate Modal -->
   <div id="certModal" onclick="closeCertModal()"
-    class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300 p-4">
-    <div class="relative max-w-4xl w-full mx-auto">
-      <button onclick="closeCertModal()"
-        class="absolute -top-12 right-0 text-white hover:text-sky-400 transition text-4xl">&times;</button>
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/90 backdrop-blur-sm opacity-0 transition-opacity duration-300 p-4">
+    
+    <!-- Fixed Close Button (Top Right of Screen) -->
+    <button onclick="closeCertModal()"
+      class="fixed top-4 right-4 md:top-6 md:right-8 text-white/70 hover:text-white transition text-5xl z-50">&times;</button>
+      
+    <div class="relative w-full max-w-5xl flex items-center justify-center">
       <img id="certImage" src="" alt="Certificate"
-        class="w-full max-h-[80vh] object-contain rounded-xl shadow-2xl bg-white cursor-pointer">
+        class="max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-xl shadow-2xl bg-white cursor-pointer">
     </div>
   </div>
 
