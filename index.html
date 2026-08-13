@@ -521,7 +521,8 @@
       pointer-events: none;
       user-select: none;
       font-size: 2rem;
-      filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.5));
+      text-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
+      will-change: transform, opacity;
     }
 
     @media print {
@@ -1806,7 +1807,7 @@
         isPlaying = true;
         updateUI(true);
         if (!heartInterval) {
-          heartInterval = setInterval(spawnHeart, 300);
+          heartInterval = setInterval(spawnHeart, 800);
         }
       } else {
         // Pause the audio element
